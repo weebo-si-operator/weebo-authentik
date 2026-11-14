@@ -1775,3 +1775,55 @@ async fn a_non_object_blueprint_context_is_invalid_and_sends_nothing() {
     );
     assert!(mock.server.received_requests().await.unwrap().is_empty());
 }
+
+/// A drifted binding's PATCH always carries `target`, even unchanged:
+/// Authentik 2026.8 validates it on a PATCH too and answers 500 without it.
+#[tokio::test]
+async fn a_policy_binding_patch_always_sends_its_target() {
+    let mock = AuthentikMock::start().await;
+    let app_pk = "22222222-2222-2222-2222-222222222222";
+    let binding_pk = "33333333-3333-3333-3333-333333333333";
+    mock.mock_get(
+        "/core/applications/harbor/",
+        200,
+        serde_json::json!({
+            "pk": app_pk, "name": "Harbor", "slug": "harbor",
+            "provider_obj": null, "backchannel_providers_obj": [],
+            "launch_url": null, "meta_icon_url": null, "meta_icon_themed_urls": null,
+        }),
+    )
+    .await;
+    mock.mock_get(
+        "/core/groups/",
+        200,
+        serde_json::json!({
+            "pagination": {"next": 0, "previous": 0, "count": 1, "current": 1, "total_pages": 1, "start_index": 1, "end_index": 1},
+            "results": [remote_group("weebo_user")],
+            "autocomplete": {}
+        }),
+    )
+    .await;
+    // Same target, another group: only the group drifted.
+    let binding = serde_json::json!({
+        "pk": binding_pk, "policy_obj": null, "group_obj": null, "user_obj": null,
+        "group": "44444444-4444-4444-4444-444444444444", "target": app_pk, "order": 0,
+        "negate": false, "enabled": true,
+    });
+    mock.mock_get(
+        &format!("/policies/bindings/{binding_pk}/"),
+        200,
+        binding.clone(),
+    )
+    .await;
+    mock.mock_patch(&format!("/policies/bindings/{binding_pk}/"), 200, binding)
+        .await;
+
+    gateway(&mock)
+        .upsert_policy_binding(Some(binding_pk), "harbor", "weebo_user", 0, false)
+        .await
+        .expect("a drifted binding is patched");
+    let sent = patches(&mock).await;
+    assert_eq!(sent.len(), 1, "{sent:?}");
+    assert_eq!(sent[0].1["target"], app_pk, "{sent:?}");
+    assert_eq!(sent[0].1["group"], GROUP_PK, "{sent:?}");
+}

@@ -73,6 +73,11 @@ impl AuthentikHttpGateway {
                 if !self.must_write("policy_binding", id, &drift) {
                     return Ok(remote.pk.to_string());
                 }
+                // Always sent, changed or not: Authentik's validation reads
+                // `target` on a PATCH too, and without it answers 500
+                // ("'NoneType' object has no attribute
+                // 'supported_policy_binding_targets'", 2026.8).
+                req.target = Some(target);
                 policies_api::policies_bindings_partial_update(&self.configuration, id, Some(req))
                     .await
                     .map_err(map_own_err)?
