@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.25.1](https://github.com/weebo-si-operator/weebo-authentik/compare/3c06100ae5cd3bcbca43130bde7a658cffd62a05..v0.25.1) - 2026-11-14
+#### Bug Fixes
+- (**access-policy**) a binding's PATCH always carries its target - ([3c06100](https://github.com/weebo-si-operator/weebo-authentik/commit/3c06100ae5cd3bcbca43130bde7a658cffd62a05)) - Max Batleforc, Claude Opus 5.5
+
+- - -
+
 ## [v0.25.0](https://github.com/weebo-si-operator/weebo-authentik/compare/8484ad06ee0cfa2be0911b2c064459c176d3130f..v0.25.0) - 2026-11-14
 #### Features
 - (**chart**) networkPolicy.kind CiliumNetworkPolicy (kit v0.32.0) - ([cc2dcac](https://github.com/weebo-si-operator/weebo-authentik/commit/cc2dcacbeb565a16b7e6dd91331eac276c8e47a2)) - Max Batleforc, Claude Opus 5.5
