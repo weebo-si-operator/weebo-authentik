@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.25.0](https://github.com/weebo-si-operator/weebo-authentik/compare/8484ad06ee0cfa2be0911b2c064459c176d3130f..v0.25.0) - 2026-11-14
+#### Features
+- (**chart**) networkPolicy.kind CiliumNetworkPolicy (kit v0.32.0) - ([cc2dcac](https://github.com/weebo-si-operator/weebo-authentik/commit/cc2dcacbeb565a16b7e6dd91331eac276c8e47a2)) - Max Batleforc, Claude Opus 5.5
+#### Bug Fixes
+- (**image**) core-runtime base with libgcc 16.2.1-3.2 - ([8484ad0](https://github.com/weebo-si-operator/weebo-authentik/commit/8484ad06ee0cfa2be0911b2c064459c176d3130f)) - Max Batleforc, Claude Opus 5.5
+
+- - -
+
 ## [v0.24.0](https://github.com/weebo-si-operator/weebo-authentik/compare/c811715727aea20b02dd4d25c5f2d1e7a57613a1..v0.24.0) - 2026-11-06
 #### Features
 - (**vault**) additional mounts in other Vault namespaces (kit v0.29.0) - ([c811715](https://github.com/weebo-si-operator/weebo-authentik/commit/c811715727aea20b02dd4d25c5f2d1e7a57613a1)) - Max Batleforc, Claude Opus 5.5
