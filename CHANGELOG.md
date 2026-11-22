@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.26.0](https://github.com/weebo-si-operator/weebo-authentik/compare/5002d3be742e7bf10c10bb962f02474b9c134a0b..v0.26.0) - 2026-11-22
+#### Features
+- (**application**) metaLaunchUrl - ([5002d3b](https://github.com/weebo-si-operator/weebo-authentik/commit/5002d3be742e7bf10c10bb962f02474b9c134a0b)) - Max Batleforc, Claude Opus 5.5 (1M context)
+
+- - -
+
 ## [v0.25.2](https://github.com/weebo-si-operator/weebo-authentik/compare/75713ae080b1f4a607bc2e08e697444fd0cc6ec6..v0.25.2) - 2026-11-22
 #### Bug Fixes
 - (**deps**) bump in range, sha2 0.11, drop unused deps, add task deps* - ([75713ae](https://github.com/weebo-si-operator/weebo-authentik/commit/75713ae080b1f4a607bc2e08e697444fd0cc6ec6)) - Max Batleforc, Claude Opus 5.5 (1M context)
