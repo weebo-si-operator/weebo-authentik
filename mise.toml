@@ -18,6 +18,10 @@ kind = "latest"
 # `task audit`
 "aqua:EmbarkStudios/cargo-deny" = "latest"
 trivy = "latest"
+# `task deps*` (weebo-deps)
+"cargo:cargo-audit" = "latest"
+"cargo:cargo-machete" = "latest"
+jq = "latest"
 # actionlint shells out to shellcheck for every `run:` script
 shellcheck = "latest"
 gh = "latest"

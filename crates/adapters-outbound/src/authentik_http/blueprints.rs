@@ -133,8 +133,11 @@ pub(super) fn state_of(remote: &models::BlueprintInstance) -> BlueprintState {
         S::Unknown => BlueprintApplyStatus::Unknown,
     };
     let stored = remote.content.as_deref().unwrap_or_default();
-    let content_applied =
-        format!("{:x}", Sha512::digest(stored.as_bytes())) == remote.last_applied_hash;
+    let content_applied = Sha512::digest(stored.as_bytes())
+        .iter()
+        .map(|b| format!("{b:02x}"))
+        .collect::<String>()
+        == remote.last_applied_hash;
     BlueprintState {
         status,
         content_applied,

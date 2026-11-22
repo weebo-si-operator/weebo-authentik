@@ -1488,7 +1488,10 @@ fn blueprint(content: &str) -> AuthentikBlueprint {
 
 fn sha512_hex(text: &str) -> String {
     use sha2::{Digest, Sha512};
-    format!("{:x}", Sha512::digest(text.as_bytes()))
+    Sha512::digest(text.as_bytes())
+        .iter()
+        .map(|b| format!("{b:02x}"))
+        .collect::<String>()
 }
 
 fn blueprint_response(status: &str, last_applied_hash: &str) -> serde_json::Value {

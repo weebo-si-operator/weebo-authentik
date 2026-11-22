@@ -13,7 +13,6 @@ authentik-client = { workspace = true }
 kube = { workspace = true }
 reqwest = { workspace = true }
 reqwest-middleware = { workspace = true }
-k8s-openapi = { workspace = true }
 serde_json = { workspace = true }
 futures = { workspace = true }
 weebo-kit-adapters = { workspace = true }

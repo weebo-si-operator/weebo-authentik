@@ -13,11 +13,11 @@
   },
   "dependencies": {
     "@weebo/operator-docs": "https://github.com/weebo-si-operator/weebo-operator-kit/releases/download/v0.32.0/weebo-operator-docs-0.32.0.tgz",
-    "fumadocs-core": "16.16.2",
-    "fumadocs-mdx": "15.4.6",
-    "fumadocs-ui": "16.16.2",
+    "fumadocs-core": "16.19.6",
+    "fumadocs-mdx": "15.6.4",
+    "fumadocs-ui": "16.19.6",
     "lucide-react": "^1.24.0",
-    "next": "16.4.1",
+    "next": "16.4.6",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "shiki": "^4.3.1"
@@ -28,8 +28,9 @@
     "@types/node": "^26.1.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "eslint": "^9.39.4",
-    "eslint-config-next": "16.4.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "16.4.6",
+    "knip": "^6.47.0",
     "postcss": "^8.5.17",
     "tailwindcss": "^4.3.2",
     "typescript": "^6.0.3"

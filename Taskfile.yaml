@@ -6,6 +6,10 @@ includes:
     taskfile: ./.tasks/test.yaml
     flatten: true
   mise: ./.tasks/mise.yaml
+  # weebo-deps: deps, deps:outdated, deps:unused, deps:update, deps:cve:*
+  deps:
+    taskfile: ./.tasks/deps.yaml
+    flatten: true
   # cog.toml, rendered from weebo-operator-kit's template (task kit:cog).
   kit: ./.tasks/kit.yaml
   # weebo-operator-kit's shared tasks, pinned to the kit tag of Cargo.toml

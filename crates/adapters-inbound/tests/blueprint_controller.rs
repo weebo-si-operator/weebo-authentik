@@ -70,7 +70,10 @@ async fn blueprint_controller_syncs_authentik_id_and_ready_once_applied() {
     let client = cluster.client();
 
     let mock = AuthentikMock::start().await;
-    let applied = format!("{:x}", Sha512::digest(STORED.as_bytes()));
+    let applied = Sha512::digest(STORED.as_bytes())
+        .iter()
+        .map(|b| format!("{b:02x}"))
+        .collect::<String>();
     mock.mock_post(
         "/managed/blueprints/",
         201,
@@ -208,7 +211,10 @@ async fn blueprint_controller_deletes_the_instance_before_releasing_the_cr() {
     let client = cluster.client();
 
     let mock = AuthentikMock::start().await;
-    let applied = format!("{:x}", Sha512::digest(STORED.as_bytes()));
+    let applied = Sha512::digest(STORED.as_bytes())
+        .iter()
+        .map(|b| format!("{b:02x}"))
+        .collect::<String>();
     mock.mock_post(
         "/managed/blueprints/",
         201,
@@ -292,7 +298,10 @@ async fn blueprint_controller_turns_ready_once_the_pending_apply_lands() {
         .with_priority(1)
         .mount(&mock.server)
         .await;
-    let applied = format!("{:x}", Sha512::digest(STORED.as_bytes()));
+    let applied = Sha512::digest(STORED.as_bytes())
+        .iter()
+        .map(|b| format!("{b:02x}"))
+        .collect::<String>();
     mock.mock_get(
         &format!("/managed/blueprints/{PK}/"),
         200,

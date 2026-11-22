@@ -8,10 +8,7 @@ publish.workspace = true
 [dependencies]
 api = { workspace = true }
 application = { workspace = true }
-kube = { workspace = true }
 wiremock = { workspace = true }
-tokio = { workspace = true }
-serde = { workspace = true }
 serde_json = { workspace = true }
 async-trait = { workspace = true }
 weebo-kit-testkit = { workspace = true }
