@@ -22,7 +22,8 @@ le scope dans du réel plutôt que du spéculatif.
   - `authentik_provider_oauth2` (client_id, flows, signing_key,
     allowed_redirect_uris avec `matching_mode` strict/regex,
     property_mappings, grant_types=authorization_code)
-  - `authentik_application` (name, slug, protocol_provider, meta_icon)
+  - `authentik_application` (name, slug, protocol_provider, meta_icon,
+    meta_launch_url)
   - `authentik_policy_binding` (target=application, group, order) — c'est
     le mécanisme d'accès qui deviendra l'allow-list/RBAC applicatif.
   - Un secret Vault structuré est écrit à chaque fois :
@@ -75,7 +76,9 @@ que l'allow-list gouverne).
 - `AuthentikGroup` (cluster-scoped) : `name`, `isSuperuser`, `parentRef`
   (auto-référence pour la hiérarchie), `attributes`.
 - `AuthentikApplication` (namespaced) : `instanceRef`, `name`, `slug`,
-  `metaIcon`, `provider` (oneOf — `oauth2` **et** `proxy` implémentés en
+  `metaIcon`, `metaLaunchUrl` (optionnel — non défini, Authentik la
+  dérive du provider ; `blank://blank` masque l'app de la bibliothèque),
+  `provider` (oneOf — `oauth2` **et** `proxy` implémentés en
   v1 pour couvrir la parité réelle avec Terraform, `saml`/`ldap`
   présents dans le schema mais non implémentés — erreur explicite si
   utilisés). Variante `proxy` : `internalHost`, `externalHost`,

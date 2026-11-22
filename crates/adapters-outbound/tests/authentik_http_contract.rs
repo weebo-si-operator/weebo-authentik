@@ -13,7 +13,10 @@
 )]
 
 use adapters_outbound::AuthentikHttpGateway;
-use api::application::{Oauth2ProviderSpec, ProviderKind, RedirectUri};
+use api::application::{
+    AuthentikApplicationSpec, Oauth2ProviderSpec, ProviderKind, ProviderSpec, ProxyProviderSpec,
+    RedirectUri,
+};
 use api::blueprint::AuthentikBlueprintSpec;
 use api::brand::AuthentikBrandSpec;
 use api::flow::{
@@ -24,8 +27,8 @@ use api::group::AuthentikGroupSpec;
 use api::outpost::{AuthentikOutpostSpec, OutpostType};
 use api::scope_mapping::AuthentikScopeMappingSpec;
 use api::{
-    AuthentikBlueprint, AuthentikBrand, AuthentikFlow, AuthentikGroup, AuthentikOutpost,
-    AuthentikScopeMapping,
+    AuthentikApplication, AuthentikBlueprint, AuthentikBrand, AuthentikFlow, AuthentikGroup,
+    AuthentikOutpost, AuthentikScopeMapping,
 };
 use application::ports::{
     AuthentikGateway, BlueprintApplyStatus, BlueprintState, GatewayError, RemoteWrite, Written,
@@ -388,6 +391,112 @@ async fn get_application_not_found_maps_to_gone() {
     // reference that doesn't resolve.
     let err = gateway(&mock).get_application("missing").await.unwrap_err();
     assert!(matches!(err, GatewayError::Gone(_)));
+}
+
+fn proxy_application(meta_launch_url: Option<&str>) -> AuthentikApplication {
+    AuthentikApplication {
+        metadata: ObjectMeta {
+            name: Some("harbor".to_string()),
+            ..Default::default()
+        },
+        spec: AuthentikApplicationSpec {
+            instance_ref: api::application::InstanceRef::named("main"),
+            name: "Harbor".to_string(),
+            slug: "harbor".to_string(),
+            meta_icon: None,
+            meta_launch_url: meta_launch_url.map(str::to_string),
+            provider: ProviderSpec {
+                kind: ProviderKind::Proxy,
+                oauth2: None,
+                proxy: Some(ProxyProviderSpec {
+                    internal_host: "http://harbor".to_string(),
+                    external_host: "https://harbor.example.com".to_string(),
+                    authorization_flow: "default-authorization-flow".to_string(),
+                    invalidation_flow: "default-invalidation-flow".to_string(),
+                    outpost_ref: None,
+                }),
+            },
+            secret_targets: vec![],
+        },
+        status: None,
+    }
+}
+
+fn remote_application(meta_launch_url: &str) -> serde_json::Value {
+    serde_json::json!({
+        "pk": "22222222-2222-2222-2222-222222222222", "name": "Harbor", "slug": "harbor",
+        "provider": 7, "provider_obj": null, "backchannel_providers_obj": [],
+        "launch_url": null, "meta_icon_url": null, "meta_icon_themed_urls": null,
+        "meta_launch_url": meta_launch_url,
+    })
+}
+
+#[tokio::test]
+async fn create_application_sends_the_meta_launch_url() {
+    let mock = AuthentikMock::start().await;
+    mock.mock_post(
+        "/core/applications/",
+        201,
+        remote_application("https://harbor.example.com/harbor/projects"),
+    )
+    .await;
+
+    gateway(&mock)
+        .create_application(
+            &proxy_application(Some("https://harbor.example.com/harbor/projects")),
+            7,
+        )
+        .await
+        .expect("the application is created");
+    let sent = mock.server.received_requests().await.unwrap();
+    assert_eq!(
+        sent[0].body_json::<serde_json::Value>().unwrap()["meta_launch_url"],
+        "https://harbor.example.com/harbor/projects"
+    );
+}
+
+#[tokio::test]
+async fn a_drifted_meta_launch_url_is_patched_alone() {
+    let mock = AuthentikMock::start().await;
+    let path = "/core/applications/harbor/";
+    mock.mock_get(path, 200, remote_application("https://old.example.com"))
+        .await;
+    mock.mock_patch(path, 200, remote_application("https://harbor.example.com"))
+        .await;
+
+    gateway(&mock)
+        .update_application(
+            "harbor",
+            &proxy_application(Some("https://harbor.example.com")),
+            7,
+        )
+        .await
+        .expect("the drift is corrected");
+    assert_eq!(
+        patches(&mock).await,
+        vec![(
+            format!("/api/v3{path}"),
+            serde_json::json!({"meta_launch_url": "https://harbor.example.com"})
+        )]
+    );
+}
+
+/// Unset leaves Authentik's value alone, like `metaIcon`: no drift, no write.
+#[tokio::test]
+async fn an_unset_meta_launch_url_is_not_a_drift() {
+    let mock = AuthentikMock::start().await;
+    mock.mock_get(
+        "/core/applications/harbor/",
+        200,
+        remote_application("https://set.by.hand.example.com"),
+    )
+    .await;
+
+    gateway(&mock)
+        .update_application("harbor", &proxy_application(None), 7)
+        .await
+        .expect("an in-sync application is not an error");
+    assert!(patches(&mock).await.is_empty());
 }
 
 #[tokio::test]

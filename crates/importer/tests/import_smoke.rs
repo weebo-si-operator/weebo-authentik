@@ -167,6 +167,7 @@ async fn import_generates_valid_crds_with_authentik_id() {
             "backchannel_providers": [], "backchannel_providers_obj": [],
             "launch_url": null, "meta_icon_url": null, "meta_icon_themed_urls": null,
             "meta_icon": "harbor.svg",
+            "meta_launch_url": "https://harbor.example.com/harbor/projects",
         }])),
     )
     .await;
@@ -245,6 +246,10 @@ async fn import_generates_valid_crds_with_authentik_id() {
     )
     .unwrap();
     assert_eq!(app_cr.spec.slug, "harbor");
+    assert_eq!(
+        app_cr.spec.meta_launch_url.as_deref(),
+        Some("https://harbor.example.com/harbor/projects")
+    );
     assert_eq!(app_cr.spec.instance_ref.name, "my-instance");
     assert_eq!(app_cr.metadata.namespace.as_deref(), Some("team-a"));
     assert_eq!(

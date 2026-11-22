@@ -20,7 +20,7 @@ impl AuthentikHttpGateway {
             provider: Some(Some(provider_id)),
             backchannel_providers: None,
             open_in_new_tab: None,
-            meta_launch_url: None,
+            meta_launch_url: app.spec.meta_launch_url.clone(),
             meta_icon: app.spec.meta_icon.clone(),
             meta_description: None,
             meta_publisher: None,
@@ -50,7 +50,7 @@ impl AuthentikHttpGateway {
             provider: Some(Some(provider_id)),
             backchannel_providers: None,
             open_in_new_tab: None,
-            meta_launch_url: None,
+            meta_launch_url: app.spec.meta_launch_url.clone(),
             meta_icon: app.spec.meta_icon.clone(),
             meta_description: None,
             meta_publisher: None,
@@ -63,6 +63,11 @@ impl AuthentikHttpGateway {
         drift.keep("slug", &mut req.slug, &remote.slug);
         drift.keep_opt("provider", &mut req.provider, &remote.provider);
         drift.keep_opt("meta_icon", &mut req.meta_icon, &remote.meta_icon);
+        drift.keep_opt(
+            "meta_launch_url",
+            &mut req.meta_launch_url,
+            &remote.meta_launch_url,
+        );
         if !self.must_write("application", authentik_id, &drift) {
             return Ok(());
         }

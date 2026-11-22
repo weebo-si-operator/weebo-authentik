@@ -549,6 +549,7 @@ mod tests {
                 name: "Harbor".to_string(),
                 slug: "harbor".to_string(),
                 meta_icon: None,
+                meta_launch_url: None,
                 provider,
                 secret_targets: Vec::new(),
             },

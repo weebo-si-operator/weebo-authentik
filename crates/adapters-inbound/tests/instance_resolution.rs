@@ -43,6 +43,7 @@ fn application(name: &str, instance_ref: InstanceRef) -> AuthentikApplication {
             name: name.to_string(),
             slug: name.to_string(),
             meta_icon: None,
+            meta_launch_url: None,
             provider: ProviderSpec {
                 kind: ProviderKind::Proxy,
                 oauth2: None,

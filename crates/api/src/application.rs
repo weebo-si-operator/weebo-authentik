@@ -29,6 +29,12 @@ pub struct AuthentikApplicationSpec {
     pub slug: String,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub meta_icon: Option<String>,
+    /// The URL Authentik's user library opens for this application. Unset:
+    /// Authentik derives one from the provider (a proxy's external host,
+    /// an oauth2 provider's redirect URI). `blank://blank` keeps the
+    /// application out of the library.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub meta_launch_url: Option<String>,
     pub provider: ProviderSpec,
     /// Where this application's oauth2 credentials are written. When empty
     /// (the default), they go to one target named after this CR, in its

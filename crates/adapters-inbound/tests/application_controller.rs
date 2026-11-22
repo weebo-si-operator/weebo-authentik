@@ -110,6 +110,7 @@ async fn oauth2_application_syncs_id_and_writes_the_credentials_secret() {
                 name: "Harbor".to_string(),
                 slug: "harbor".to_string(),
                 meta_icon: None,
+                meta_launch_url: None,
                 provider: ProviderSpec {
                     kind: ProviderKind::Oauth2,
                     oauth2: Some(Oauth2ProviderSpec {
@@ -248,6 +249,7 @@ async fn proxy_application_syncs_id_attaches_outpost_and_writes_no_secret() {
                 name: "Longhorn".to_string(),
                 slug: "longhorn".to_string(),
                 meta_icon: None,
+                meta_launch_url: None,
                 provider: ProviderSpec {
                     kind: ProviderKind::Proxy,
                     oauth2: None,
@@ -340,6 +342,7 @@ fn proxy_application() -> AuthentikApplication {
             name: "Longhorn".to_string(),
             slug: "longhorn".to_string(),
             meta_icon: None,
+            meta_launch_url: None,
             provider: ProviderSpec {
                 kind: ProviderKind::Proxy,
                 oauth2: None,

@@ -115,6 +115,7 @@ async fn an_instance_in_use_is_kept_until_its_crs_are_gone() {
                 name: "Longhorn".to_string(),
                 slug: "longhorn".to_string(),
                 meta_icon: None,
+                meta_launch_url: None,
                 provider: ProviderSpec {
                     kind: ProviderKind::Proxy,
                     oauth2: None,

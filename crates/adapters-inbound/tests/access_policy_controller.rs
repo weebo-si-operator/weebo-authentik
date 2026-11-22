@@ -176,6 +176,7 @@ async fn syncs_the_binding_once_the_application_has_synced() {
                 name: "Harbor".to_string(),
                 slug: "harbor".to_string(),
                 meta_icon: None,
+                meta_launch_url: None,
                 provider: ProviderSpec {
                     kind: ProviderKind::Proxy,
                     oauth2: None,

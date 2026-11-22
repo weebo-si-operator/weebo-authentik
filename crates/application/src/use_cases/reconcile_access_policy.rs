@@ -128,6 +128,7 @@ mod tests {
                 name: "harbor".to_string(),
                 slug: "harbor".to_string(),
                 meta_icon: None,
+                meta_launch_url: None,
                 provider: ProviderSpec {
                     kind: ProviderKind::Oauth2,
                     oauth2: Some(Oauth2ProviderSpec {

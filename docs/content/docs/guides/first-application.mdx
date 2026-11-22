@@ -42,6 +42,7 @@ spec:
   name: Harbor
   slug: harbor
   metaIcon: harbor.svg
+  metaLaunchUrl: https://harbor.example.com
   provider:
     kind: oauth2
     oauth2:
@@ -53,6 +54,10 @@ spec:
       grantTypes:
         - authorization_code
 ```
+
+`metaLaunchUrl` is optional: the URL Authentik's user library opens for
+the application. Left out, Authentik derives one from the provider;
+`blank://blank` hides the application from the library.
 
 Adjust `authorizationFlow`/`invalidationFlow` to the actual flow slugs
 configured on your instance (list them under **Admin interface →

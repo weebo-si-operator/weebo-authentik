@@ -217,6 +217,7 @@ pub async fn import_applications(
                 name: app.name.clone(),
                 slug: app.slug.clone(),
                 meta_icon: app.meta_icon.clone(),
+                meta_launch_url: app.meta_launch_url.clone().filter(|u| !u.is_empty()),
                 provider: provider_spec,
                 // Imported apps use the instance's default single
                 // destination; multi-target fan-out is opt-in, set by hand

@@ -55,6 +55,14 @@ spec:
               metaIcon:
                 nullable: true
                 type: string
+              metaLaunchUrl:
+                description: |-
+                  The URL Authentik's user library opens for this application. Unset:
+                  Authentik derives one from the provider (a proxy's external host,
+                  an oauth2 provider's redirect URI). `blank://blank` keeps the
+                  application out of the library.
+                nullable: true
+                type: string
               name:
                 type: string
               provider:
