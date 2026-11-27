@@ -123,28 +123,28 @@ url_api = "https://api.github.com/repos/rhysd/actionlint/releases/assets/3849248
 provenance = "github-attestations"
 
 [[tools."aqua:EmbarkStudios/cargo-deny"]]
-version = "0.22.0"
+version = "0.22.1"
 backend = "aqua:EmbarkStudios/cargo-deny"
 
 [tools."aqua:EmbarkStudios/cargo-deny"."platforms.linux-x64"]
-checksum = "sha256:98c56e6a408bfa5c3c60744b6015aaa6aa08f743fdeb88386d06fca035bb1786"
-url = "https://github.com/EmbarkStudios/cargo-deny/releases/download/0.22.0/cargo-deny-0.22.0-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/EmbarkStudios/cargo-deny/releases/assets/768401805"
+checksum = "sha256:13f7e825e9cb811c2f8de63f29b0f45851dfb53004029f0f2501af524728364d"
+url = "https://github.com/EmbarkStudios/cargo-deny/releases/download/0.22.1/cargo-deny-0.22.1-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/EmbarkStudios/cargo-deny/releases/assets/787898547"
 
 [[tools."aqua:kubernetes/kubernetes/kube-apiserver"]]
-version = "1.36.2"
+version = "1.37.3"
 backend = "aqua:kubernetes/kubernetes/kube-apiserver"
 
 [tools."aqua:kubernetes/kubernetes/kube-apiserver"."platforms.linux-x64"]
-checksum = "sha256:6770be17296ef36b656ad84e52b043007fb9a47ba0445c224097323291b1b33b"
-url = "https://dl.k8s.io/v1.36.2/bin/linux/amd64/kube-apiserver"
+checksum = "sha256:2c834e8bdf2c75ecdf8688634da436eddd972a8222358189171f927ed3356fd9"
+url = "https://dl.k8s.io/v1.37.3/bin/linux/amd64/kube-apiserver"
 
 [[tools."cargo:cargo-audit"]]
 version = "0.23.0"
 backend = "cargo:cargo-audit"
 
 [[tools."cargo:cargo-machete"]]
-version = "0.9.2"
+version = "0.10.1"
 backend = "cargo:cargo-machete"
 
 [[tools.clang]]
@@ -189,13 +189,13 @@ conda_deps = [
 ]
 
 [[tools.claude]]
-version = "2.1.330"
+version = "2.1.332"
 backend = "aqua:anthropics/claude-code"
 
 [tools.claude."platforms.linux-x64"]
-checksum = "sha256:4d2cde1b749a0c9badcb7ad2ac49d735eebb66b5d503b6e073b81e356ffd5f54"
-url = "https://github.com/anthropics/claude-code/releases/download/v2.1.330/claude-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/anthropics/claude-code/releases/assets/773030426"
+checksum = "sha256:cab5bc60de00f7238b7974d281db4c177385490744ee44b329f6509e1606ca3c"
+url = "https://github.com/anthropics/claude-code/releases/download/v2.1.332/claude-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/anthropics/claude-code/releases/assets/789036647"
 
 [[tools.cocogitto]]
 version = "7.0.0"
@@ -207,22 +207,22 @@ url = "https://github.com/cocogitto/cocogitto/releases/download/7.0.0/cocogitto-
 url_api = "https://api.github.com/repos/cocogitto/cocogitto/releases/assets/366659350"
 
 [[tools.etcd]]
-version = "3.5.32"
+version = "3.7.4"
 backend = "aqua:etcd-io/etcd"
 
 [tools.etcd."platforms.linux-x64"]
-checksum = "sha256:83532f9290ee89106c4c9d0467220f65623c1faadaab800d727f7beccce4d7dd"
-url = "https://github.com/etcd-io/etcd/releases/download/v3.5.32/etcd-v3.5.32-linux-amd64.tar.gz"
-url_api = "https://api.github.com/repos/etcd-io/etcd/releases/assets/463597258"
+checksum = "sha256:a0d47d07d081c12611fe69dc81a16ae8dd758401c0fe3a83d508823a1dac558e"
+url = "https://github.com/etcd-io/etcd/releases/download/v3.7.4/etcd-v3.7.4-linux-amd64.tar.gz"
+url_api = "https://api.github.com/repos/etcd-io/etcd/releases/assets/765507213"
 
 [[tools.gh]]
-version = "2.105.0"
+version = "2.106.0"
 backend = "aqua:cli/cli"
 
 [tools.gh."platforms.linux-x64"]
-checksum = "sha256:79e7ab5db738c48777b696e374f8b428f0647debfb424f44d2f426370407fe2f"
-url = "https://github.com/cli/cli/releases/download/v2.105.0/gh_2.105.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/cli/cli/releases/assets/761188566"
+checksum = "sha256:a476449fa9625413c54a3734eded62e9e480e49f421ff08e7f3b3879c059a033"
+url = "https://github.com/cli/cli/releases/download/v2.106.0/gh_2.106.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/cli/cli/releases/assets/793444853"
 provenance = "github-attestations"
 
 [[tools.gitleaks]]
@@ -280,20 +280,20 @@ url = "https://github.com/kubernetes-sigs/kind/releases/download/v0.33.0/kind-li
 url_api = "https://api.github.com/repos/kubernetes-sigs/kind/releases/assets/531396433"
 
 [[tools.kubectl]]
-version = "1.37.2"
+version = "1.37.3"
 backend = "aqua:kubernetes/kubernetes/kubectl"
 
 [tools.kubectl."platforms.linux-x64"]
-checksum = "sha256:c04487523e7aa7d1493f7808174c899db93d7a9cf57531420cd76b9bd415f8f4"
-url = "https://dl.k8s.io/v1.37.2/bin/linux/amd64/kubectl"
+checksum = "sha256:9a1b55af2795b25dd288dbef62387db9b5530087ab918d28c6ad067f2e3cb07c"
+url = "https://dl.k8s.io/v1.37.3/bin/linux/amd64/kubectl"
 
 [[tools.node]]
-version = "24.22.3"
+version = "26.13.1"
 backend = "core:node"
 
 [tools.node."platforms.linux-x64"]
-checksum = "sha256:061ec3e3062115705b56b51fa9cc330ab50d34b6969387d4e4b1a50c6809acc2"
-url = "https://nodejs.org/dist/v24.22.3/node-v24.22.3-linux-x64.tar.gz"
+checksum = "sha256:518674de2b621728a5e4486f5fb3b7d2900bb3cc4aa97969edaa463db99f9778"
+url = "https://nodejs.org/dist/v26.13.1/node-v26.13.1-linux-x64.tar.gz"
 
 [[tools.rtk]]
 version = "1.2.1"

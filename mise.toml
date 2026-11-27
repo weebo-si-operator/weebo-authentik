@@ -1,13 +1,13 @@
 [tools]
 cocogitto = "latest"
-node = "24"
+node = "26"
 rust = {version = "latest", components=["rust-src","rustfmt", "llvm-tools","clippy"], profile = "default"}
 task = "latest"
 gitleaks = "latest"
 claude = "latest"
 rtk = "latest"
-etcd = "3.5.32"
-"aqua:kubernetes/kubernetes/kube-apiserver" = "1.36.2"
+etcd = "3.7.4"
+"aqua:kubernetes/kubernetes/kube-apiserver" = "1.37.3"
 go = "latest"
 clang = "latest"
 actionlint = "latest"
